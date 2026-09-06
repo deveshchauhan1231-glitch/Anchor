@@ -223,30 +223,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({
         {/* Bottom Section: Profile & Settings */}
         <div className="border-t border-white/10 p-3 space-y-2">
           {/* User Profile Info */}
-          <div
-            className={`flex items-center gap-3 rounded-xl p-2 bg-surface/60 border border-white/5 ${isCollapsed ? 'justify-center p-1.5' : ''
-              }`}
-          >
-            {isSignedIn ? (
-              <UserButton />
-            ) : (
-              <div className="relative">
-                <img
-                  src={displayImage}
-                  alt={displayName}
-                  className="h-9 w-9 rounded-xl object-cover ring-1 ring-brand-500/50"
-                />
-                <span className="absolute -bottom-0.5 -right-0.5 flex h-3 w-3 items-center justify-center rounded-full bg-brand-500 ring-2 ring-[#0c0917]" />
-              </div>
-            )}
-
-            {!isCollapsed && (
-              <div className="flex flex-1 flex-col min-w-0">
-                <span className="text-xs font-bold text-white truncate">{displayName}</span>
-
-              </div>
-            )}
-          </div>
+          
 
           {/* Settings Link 
           <Link
