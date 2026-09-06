@@ -19,7 +19,7 @@ const themeConfig: Record<
 };
 
 export const ThemeToggle = () => {
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export const ThemeToggle = () => {
     );
   }
 
-  const currentTheme = theme as ThemeValue;
+  const currentTheme = (resolvedTheme ?? "dark") as ThemeValue;
   const { icon: Icon, label } = themeConfig[currentTheme];
 
   const handleCycle = () => {
