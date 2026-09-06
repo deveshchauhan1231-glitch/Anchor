@@ -16,11 +16,8 @@ export function ClerkThemeProvider({
   return (
     <ClerkProvider
       publishableKey={publishableKey}
-      fallbackRedirectUrl="/dashboard"
       signInFallbackRedirectUrl="/dashboard"
       signUpFallbackRedirectUrl="/dashboard"
-      signInUrl="/sign-in"
-      signUpUrl="/sign-up"
       appearance={{
         variables: isDark
           ? {
