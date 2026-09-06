@@ -228,13 +228,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({
               }`}
           >
             {isSignedIn ? (
-              <UserButton
-                appearance={{
-                  elements: {
-                    avatarBox: 'h-9 w-9 ring-2 ring-brand-500/50',
-                  },
-                }}
-              />
+              <UserButton />
             ) : (
               <div className="relative">
                 <img
