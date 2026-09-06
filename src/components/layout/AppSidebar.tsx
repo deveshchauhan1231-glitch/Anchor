@@ -229,7 +229,6 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({
           >
             {isSignedIn ? (
               <UserButton
-                forceRedirectUrl="/"
                 appearance={{
                   elements: {
                     avatarBox: 'h-9 w-9 ring-2 ring-brand-500/50',
