@@ -27,7 +27,6 @@ export function ClerkThemeProvider({
       signInFallbackRedirectUrl="/dashboard"
       signUpFallbackRedirectUrl="/dashboard"
       appearance={{
-        baseTheme: isDark ? 'dark' : 'light',
         variables: isDark
           ? {
               colorPrimary: '#6366f1',
