@@ -73,13 +73,7 @@ export default async function RootHomePage() {
 
         {/* Action Button */}
         <div className="flex items-center gap-3 sm:gap-6 mb-3 mt-3">
-          <Link
-            href="/dashboard/subjects"
-            className="hidden sm:inline-flex items-center gap-2 text-xm font-semibold text-neutral-300 hover:text-white transition-colors"
-          >
-            <BookOpen className="h-4 w-4 text-brand-400 " />
-            <span>Explore Subjects</span>
-          </Link>
+          
 
           <Link
             href="/dashboard"
@@ -207,7 +201,7 @@ export default async function RootHomePage() {
           The academic flow workspace designed for deep focus and structured mastery.
         </p>
         <p className="text-xs text-neutral-600 pt-2">
-          © 2026 Anchor Systems. All rights reserved.
+          © 2026 Anchor. All rights reserved.
         </p>
       </footer>
     </div>
