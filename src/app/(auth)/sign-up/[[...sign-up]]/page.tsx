@@ -13,7 +13,6 @@ export default function SignUpPage() {
           <p className="mt-1 text-xs text-neutral-400">Create your scholar account</p>
         </div>
         <SignUp
-          forceRedirectUrl="/dashboard"
           appearance={{
             elements: {
               card: 'bg-[#141122] border border-white/10 shadow-2xl text-white',
