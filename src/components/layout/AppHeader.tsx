@@ -92,26 +92,7 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
         </button>
 
         {/* User Account */}
-        <div className="flex items-center pl-1">
-          {isSignedIn ? (
-            <UserButton
-
-              appearance={{
-                elements: {
-                  avatarBox: 'h-9 w-9 ring-2 ring-brand-500/50',
-                },
-              }}
-            />
-          ) : (
-            <Link
-              href="/sign-in"
-              title="Sign In or Manage Account"
-              className="flex h-9 w-9 items-center justify-center rounded-xl border border-brand-500/30 bg-surface text-foreground/70 shadow-sm transition-colors hover:border-brand-500/60 hover:bg-surface-light hover:text-foreground"
-            >
-              <UserIcon className="h-4 w-4 text-brand-500" />
-            </Link>
-          )}
-        </div>
+        
       </div>
     </header>
   );
