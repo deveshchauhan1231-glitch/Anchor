@@ -25,6 +25,7 @@ export default function SignInPage() {
         {/* Clerk Sign In Card with Violet Obsidian Styling */}
         <div className="flex justify-center">
           <SignIn
+            forceRedirectUrl="/dashboard"
             appearance={{
               variables: {
                 colorText: '#ffffff',
