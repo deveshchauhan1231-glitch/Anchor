@@ -2,6 +2,7 @@
 
 import { ClerkProvider } from '@clerk/nextjs';
 import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
 
 export function ClerkThemeProvider({
   publishableKey,
@@ -11,7 +12,14 @@ export function ClerkThemeProvider({
   children: React.ReactNode;
 }) {
   const { resolvedTheme } = useTheme();
-  const isDark = resolvedTheme !== 'light';
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Use default theme if not yet mounted/resolved
+  const isDark = mounted ? resolvedTheme !== 'light' : true;
 
   return (
     <ClerkProvider
@@ -19,6 +27,7 @@ export function ClerkThemeProvider({
       signInFallbackRedirectUrl="/dashboard"
       signUpFallbackRedirectUrl="/dashboard"
       appearance={{
+        baseTheme: isDark ? 'dark' : 'light',
         variables: isDark
           ? {
               colorPrimary: '#6366f1',
