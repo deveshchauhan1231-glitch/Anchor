@@ -1,0 +1,385 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap');
+
+@import 'tailwindcss';
+@config '../../tailwind.config.ts';
+@plugin '@tailwindcss/typography';
+@import 'katex/dist/katex.min.css';
+
+button,
+a,
+[role='button'],
+summary,
+label[for] {
+  cursor: pointer;
+}
+
+svg.lucide {
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+svg.lucide.text-foreground\/30,
+svg.lucide.text-foreground\/40,
+svg.lucide.text-foreground\/50,
+svg.lucide.text-foreground\/60 {
+  color: var(--color-foreground);
+}
+
+/* ============================================================
+   CSS CUSTOM PROPERTIES — LIGHT THEME (default / :root)
+   Clean, minimal. Indigo accent, white surfaces.
+   ============================================================ */
+@layer base {
+  :root {
+    /* Brand palette — indigo (Render-like, works on both themes) */
+    --color-brand-50: #fff7ed;
+    --color-brand-100: #ffedd5;
+    --color-brand-200: #fed7aa;
+    --color-brand-300: #fdba74;
+    --color-brand-400: #fb923c;
+    --color-brand-500: #f97316;
+    --color-brand-600: #ea580c;
+    --color-brand-700: #c2410c;
+    --color-brand-800: #9a3412;
+    --color-brand-900: #7c2d12;
+    --color-brand-950: #431407;
+
+    /* Light surfaces */
+    --color-background: #f4f5f7;
+    --color-foreground: #0f1117;
+    --color-surface: #ffffff;
+    --color-surface-light: #e8ebf2;
+    --color-surface-lighter: #dadfe9;
+    --color-surface-border: rgba(0, 0, 0, 0.08);
+  }
+
+  /* ============================================================
+     DARK THEME — Render-Inspired
+     Near-black with a cool (blue-gray) undertone. Not purple-tinted.
+     Indigo accent used sparingly. Very subtle borders.
+     ============================================================ */
+  .dark {
+    /* Brand palette — same indigo, slightly desaturated feel on dark */
+    --color-brand-50: #fff7ed;
+    --color-brand-100: #ffedd5;
+    --color-brand-200: #fed7aa;
+    --color-brand-300: #fdba74;
+    --color-brand-400: #fb923c;
+    --color-brand-500: #f97316;
+    --color-brand-600: #ea580c;
+    --color-brand-700: #c2410c;
+    --color-brand-800: #9a3412;
+    --color-brand-900: #7c2d12;
+    --color-brand-950: #431407;
+
+    /* Dark surfaces — cool near-black, no purple tint */
+    --color-background: #0a0a0f;
+    --color-foreground: #e4e4e7;
+    --color-surface: #111118;
+    --color-surface-light: #181822;
+    --color-surface-lighter: #20202d;
+    --color-surface-border: rgba(255, 255, 255, 0.06);
+  }
+
+  /* ============================================================
+     BASE RESET
+     ============================================================ */
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Light mode border defaults */
+  :root * {
+    border-color: rgba(0, 0, 0, 0.08);
+  }
+
+  /* Dark mode border defaults */
+  .dark * {
+    border-color: rgba(255, 255, 255, 0.06);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+    letter-spacing: -0.01em;
+  }
+}
+
+/* ============================================================
+   DARK MODE — COMPONENT OVERRIDES
+   These override the hardcoded hex bg values in components
+   without needing to touch each component file.
+   ============================================================ */
+
+/* Sidebar & header backgrounds */
+.dark aside,
+.dark header {
+  background-color: #0a0a0f !important;
+}
+
+/* Card/modal backgrounds — replaces #161224, #151124, #120f22 */
+.dark [class*="bg-\\[\\#16"],
+.dark [class*="bg-\\[\\#15"],
+.dark [class*="bg-\\[\\#12"] {
+  background-color: #111118;
+}
+
+/* Sidebar container — replaces #0c0917 */
+.dark [class*="bg-\\[\\#0c0917\\]"] {
+  background-color: #0a0a0f;
+}
+
+/* Main page background — replaces #08060f */
+.dark [class*="bg-\\[\\#08060f\\]"] {
+  background-color: #0a0a0f;
+}
+
+/* Input fields — replaces #0d0a17 */
+.dark [class*="bg-\\[\\#0d0a17\\]"] {
+  background-color: #0f0f17;
+}
+
+/* Reduce glow & bloom in dark mode */
+.dark [class*="shadow-brand"] {
+  --tw-shadow-color: rgba(99, 102, 241, 0.12);
+}
+
+/* ============================================================
+   LIGHT MODE — COMPONENT OVERRIDES
+   Remap hardcoded dark hex values to light equivalents
+   ============================================================ */
+
+/* Reset dark-only sidebar/header backgrounds */
+:root:not(.dark) aside,
+:root:not(.dark) header {
+  background-color: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Remap very dark card backgrounds to light */
+:root:not(.dark) [class*="bg-\\[\\#16"],
+:root:not(.dark) [class*="bg-\\[\\#15"],
+:root:not(.dark) [class*="bg-\\[\\#12"],
+:root:not(.dark) [class*="bg-\\[\\#0c0917\\]"],
+:root:not(.dark) [class*="bg-\\[\\#08060f\\]"] {
+  background-color: #f4f5f7;
+}
+
+:root:not(.dark) [class*="bg-\\[\\#0d0a17\\]"] {
+  background-color: #ffffff;
+}
+
+/* Light mode text corrections */
+:root:not(.dark) .text-neutral-400 {
+  color: #6b7280;
+}
+
+:root:not(.dark) .text-neutral-300 {
+  color: #374151;
+}
+
+:root:not(.dark) .text-white {
+  color: #0f1117;
+}
+
+:root:not(.dark) .border-white\/10 {
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+:root:not(.dark) .border-white\/5 {
+  border-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Light mode: tonal surfaces */
+:root:not(.dark) .bg-white\/5 {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+:root:not(.dark) .bg-white\/10 {
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
+/* ============================================================
+   CUSTOM SCROLLBARS
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.25);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.5);
+}
+
+/* ============================================================
+   GLASSMORPHISM UTILITIES
+   ============================================================ */
+.glass-card {
+  background: rgba(17, 17, 24, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+:root:not(.dark) .glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.glass-card-hover {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card-hover:hover {
+  border-color: rgba(99, 102, 241, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -4px rgba(99, 102, 241, 0.08);
+}
+
+/* ============================================================
+   MARKDOWN BODY — Dark
+   ============================================================ */
+.markdown-body {
+  color: #e2e8f0;
+  line-height: 1.65;
+  font-size: 0.95rem;
+}
+
+:root:not(.dark) .markdown-body {
+  color: #1e293b;
+}
+
+.markdown-body h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.4rem;
+  margin-top: 1.2rem;
+  margin-bottom: 0.8rem;
+}
+
+:root:not(.dark) .markdown-body h1 {
+  color: #0f1117;
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+.markdown-body h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  padding-bottom: 0.3rem;
+  margin-top: 1rem;
+  margin-bottom: 0.6rem;
+}
+
+:root:not(.dark) .markdown-body h2 {
+  color: #1e293b;
+  border-bottom-color: rgba(0, 0, 0, 0.06);
+}
+
+.markdown-body h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #818cf8;
+  margin-top: 0.8rem;
+  margin-bottom: 0.4rem;
+}
+
+.markdown-body p {
+  margin-bottom: 0.8rem;
+}
+
+.markdown-body ul {
+  list-style-type: disc;
+  padding-left: 1.4rem;
+  margin-bottom: 0.8rem;
+}
+
+.markdown-body ol {
+  list-style-type: decimal;
+  padding-left: 1.4rem;
+  margin-bottom: 0.8rem;
+}
+
+.markdown-body code {
+  background-color: rgba(99, 102, 241, 0.1);
+  color: #818cf8;
+  padding: 0.15rem 0.35rem;
+  border-radius: 0.25rem;
+  font-family: monospace;
+  font-size: 0.88em;
+}
+
+:root:not(.dark) .markdown-body code {
+  background-color: rgba(99, 102, 241, 0.08);
+  color: #4f46e5;
+}
+
+.markdown-body pre {
+  background-color: #0f0f17;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 0.5rem;
+  padding: 0.8rem 1rem;
+  overflow-x: auto;
+  margin-bottom: 0.9rem;
+}
+
+:root:not(.dark) .markdown-body pre {
+  background-color: #f1f3f9;
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.markdown-body pre code {
+  background: transparent;
+  padding: 0;
+  color: #e2e8f0;
+}
+
+:root:not(.dark) .markdown-body pre code {
+  color: #1e293b;
+}
+
+.markdown-body blockquote {
+  border-left: 3px solid #6366f1;
+  padding-left: 0.8rem;
+  color: #94a3b8;
+  font-style: italic;
+  margin: 0.8rem 0;
+}
+
+.markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+.markdown-body th,
+.markdown-body td {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.5rem 0.75rem;
+}
+
+:root:not(.dark) .markdown-body th,
+:root:not(.dark) .markdown-body td {
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.markdown-body th {
+  background-color: rgba(99, 102, 241, 0.08);
+  font-weight: 600;
+}
