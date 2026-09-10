@@ -44,16 +44,7 @@ export default function SignInPage() {
           />
         </div>
 
-        {/* Quick Testing Bypass Option */}
-        <div className="text-center pt-2">
-          <Link
-            href="/dashboard"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-brand-400 hover:text-brand-300 hover:underline transition-colors"
-          >
-            <span>Skip sign-in & explore as Guest (Alex)</span>
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
+        
       </div>
     </div>
   );
