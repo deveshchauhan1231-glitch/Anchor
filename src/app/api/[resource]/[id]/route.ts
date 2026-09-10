@@ -1,5 +1,5 @@
 import { NextRequest } from 'next/server';
-import { getCurrentUserId } from '@/lib/server/auth';
+import { getCurrentUserId, rejectDemoWrite } from '@/lib/server/auth';
 import { prisma } from '@/lib/server/prisma';
 import { failure, handleError, success } from '@/lib/server/response';
 import { getCached, invalidateCache, setCached, subjectCacheKeys } from '@/lib/server/cache';
@@ -56,6 +56,7 @@ export async function GET(_request: NextRequest, { params }: Context) {
 
 export async function PUT(request: NextRequest, { params }: Context) {
   try {
+    await rejectDemoWrite();
     const { resource, id } = await params;
     const userId = await getCurrentUserId();
     const body = await request.json();
@@ -113,6 +114,7 @@ export async function PUT(request: NextRequest, { params }: Context) {
 
 export async function DELETE(_request: NextRequest, { params }: Context) {
   try {
+    await rejectDemoWrite();
     const { resource, id } = await params;
     const userId = await getCurrentUserId();
     if (resource === 'subjects') {

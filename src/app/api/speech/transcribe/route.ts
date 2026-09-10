@@ -1,10 +1,11 @@
-import { getCurrentUserId } from '@/lib/server/auth';
+import { getCurrentUserId, rejectDemoWrite } from '@/lib/server/auth';
 import { failure, handleError, success } from '@/lib/server/response';
 
 export const runtime = 'nodejs';
 
 export async function POST(request: Request) {
   try {
+    await rejectDemoWrite();
     await getCurrentUserId();
     const formData = await request.formData();
     const audio = formData.get('audio');

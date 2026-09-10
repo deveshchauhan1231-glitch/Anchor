@@ -1,12 +1,15 @@
 import { auth, currentUser } from '@clerk/nextjs/server';
-import { headers } from 'next/headers';
+import { cookies, headers } from 'next/headers';
 import { prisma } from './prisma';
 
 export async function getCurrentUserId() {
   const userId = (await auth()).userId;
+  const demoMode = (await cookies()).get('anchor_demo')?.value === '1';
   const requestHeaders = await headers();
   const resolvedUserId = userId ||
-    (process.env.NODE_ENV !== 'production'
+    (demoMode
+      ? 'demo_user_anchor'
+      : process.env.NODE_ENV !== 'production'
       ? requestHeaders.get('x-dev-user-id') || process.env.DEV_USER_ID
       : null) ||
     'user_scholar_alex';
@@ -45,4 +48,18 @@ export async function getCurrentUserId() {
   });
 
   return resolvedUserId;
+}
+
+export async function isDemoMode() {
+  return (await cookies()).get('anchor_demo')?.value === '1' && !(await auth()).userId;
+}
+
+export async function rejectDemoWrite() {
+  if (await isDemoMode()) {
+    throw {
+      statusCode: 401,
+      code: 'SIGN_IN_REQUIRED',
+      message: 'Please sign in to modify demo content.',
+    };
+  }
 }

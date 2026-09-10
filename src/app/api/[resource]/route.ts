@@ -1,5 +1,5 @@
 import { NextRequest } from 'next/server';
-import { getCurrentUserId } from '@/lib/server/auth';
+import { getCurrentUserId, rejectDemoWrite } from '@/lib/server/auth';
 import { prisma } from '@/lib/server/prisma';
 import { failure, handleError, success } from '@/lib/server/response';
 import { getCached, invalidateCache, setCached, subjectCacheKeys } from '@/lib/server/cache';
@@ -102,6 +102,7 @@ export async function GET(request: NextRequest, { params }: Context) {
 
 export async function POST(request: NextRequest, { params }: Context) {
   try {
+    await rejectDemoWrite();
     const { resource } = await params;
     const userId = await getCurrentUserId();
     const body = await request.json();

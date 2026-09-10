@@ -19,6 +19,8 @@ import {
 } from 'lucide-react';
 import { auth } from '@clerk/nextjs/server'
 import { redirect } from 'next/navigation'
+import { DemoButton } from '@/components/landing/DemoButton';
+import { cookies } from 'next/headers';
 
 
 
@@ -26,8 +28,9 @@ import { redirect } from 'next/navigation'
 export default async function RootHomePage() {
 
   const { userId } = await auth()
+  const demoMode = (await cookies()).get('anchor_demo')?.value === '1';
 
-  if (userId) {
+  if (userId || demoMode) {
     redirect('/dashboard')
   }
 
@@ -120,6 +123,8 @@ export default async function RootHomePage() {
               <LayoutGrid className="h-4 w-4 text-brand-400" />
               <span>Browse Catalog</span>
             </Link>
+
+            <DemoButton />
           </div>
         </section>
 
