@@ -59,9 +59,9 @@ export async function enterDemoAction() {
     await prisma.video.create({
       data: {
         subjectId: demoSubject.id,
-        youtubeUrl: 'https://www.youtube.com/watch?v=9XyF5mb5FzQ',
+        youtubeUrl: 'https://www.youtube.com/watch?v=6AYT08PLX7U&list=PLuyN7BuB3DLzQPQz9LIt-xyu9KBdeBTLN',
         youtubeId: '9XyF5mb5FzQ',
-        title: 'Lecture 1: Quantum Mechanics',
+        title: 'Lecture 1: Basics',
         description: 'A short introduction to quantum mechanics.',
         thumbnailUrl: 'https://img.youtube.com/vi/9XyF5mb5FzQ/hqdefault.jpg',
       },
